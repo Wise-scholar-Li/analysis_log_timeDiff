@@ -1,0 +1,190 @@
+diff a/AutoChart/Form1.cs b/AutoChart/Form1.cs	(rejected hunks)
+@@ -251,184 +251,184 @@
+
+         }
+
+         private void RecvDateThread()
+         {
+             int i;
+             byte[] recvBuf = new byte[256];
+
+             List<byte[]> packList = new List<byte[]>();
+
+             int idx = 0;
+             while (true)
+             {
+                 //Debug.Print("Recv Date Thread!");
+                 if (closeEna)
+                 {
+                     return;
+                 }
+                 if (g_Recv_En == false)      // recv handle
+                 {
+                     Thread.Sleep(500);
+                     uartRxLength = 0;
+                     continue;
+                 }
+
+                 if (uartRxLength == 0)
+                 {
+                     continue;
+                 }
+                 Thread.Sleep(3);
+
+                 for (i = 0; i < 4; i++)
+                 {
+                     commProtocol.getPackages(uartRxBuffer, uartRxLength, packList);
+                     int length = uartRxLength;
+                     uartRxLength = 0;
+
+                     AddText(textBoxSource,"接收:" + Tools.byteToHexStr(uartRxBuffer, length));
+                     if (packList.Count >= 1)
+                     {
+                         for (int j = 0; j < packList.Count; j++)
+                         {
+                             recvBuf = packList[j];
+                             idx = 5;    // sn(5) + info
+
+                             if (recvBuf[idx] == 2)  // idx = 5; (recvBuf[8] == 2)    //路由注册信息
+                             {
+                                 // 40 01 02 03 04 02 43 01 80 00 00 00 00   // SN(5)+Cmd-id(1) + vn(1) + lv(1) + path(5)
+                                 if (13 > length)
+                                     break;
+-                                Debug.Print("login:" + Tools.byteToHexStr(recvBuf, length));
++
+                                 int k = 0;
+                                 for (; k < downDataList.Count; k++)
+                                 {
+                                     if (downDataList[k].SN[4] == recvBuf[4] && downDataList[k].SN[3] == recvBuf[3] &&
+                                         downDataList[k].SN[2] == recvBuf[2] && downDataList[k].SN[1] == recvBuf[1] &&
+                                         downDataList[k].SN[0] == recvBuf[0])
+                                     {
+-                                        AddText(textBoxSource,"re-login:");
+-
++                                        Debug.Print("re-login:" + Tools.byteToHexStr(recvBuf, length));
+                                          //Array.Copy(recvBuf, 11, downDataList[k].PATH, 0, 15);
+                                         downDataList[k].VN = recvBuf[idx+1];
+                                         downDataList[k].PATHStr = "";
+                                         downDataList[k].PATH = new byte[5];
+                                         idx = 8;
+
+                                         for (int m = 0; m < 5; m++)
+                                         {
+                                             downDataList[k].PATH[m] = recvBuf[m + idx];
+                                             downDataList[k].PATHStr += downDataList[k].PATH[m].ToString("X2");
+                                         }
+                                         downDataList[k].PATHCount++;
+
+                                         InverterStatusDataTable.Rows[k][6] = downDataList[k].PATHCount;
+                                         InverterStatusDataTable.Rows[k][8] = downDataList[k].PATHStr;
+
+                                         break;
+                                     }
+                                 }
+
+                                 // the dev is new, need add this !
+                                 if (k == downDataList.Count)
+                                 {
+                                     dataArr dataCell = new dataArr();
+                                     dataCell.SN = new byte[5];
+                                     dataCell.PATH = new byte[5];
+                                     dataCell.SN_HexStr = "";
+                                     AddText(textBoxSource,"new");
+-
++                                    Debug.Print("login:" + Tools.byteToHexStr(recvBuf, length));
+                                     for (int m = 0; m < 5; m++)
+                                     {
+                                         dataCell.SN[m] = recvBuf[m];
+                                         dataCell.SN_HexStr += dataCell.SN[m].ToString("X2");
+                                     }
+
+                                     dataCell.PATHStr = "";
+                                     if(length > 13)
+                                         return;
+
+                                     for (int m = 0; m < 5; m++)
+                                     {
+                                         dataCell.PATH[m] = recvBuf[m + 8];
+                                         dataCell.PATHStr += dataCell.PATH[m].ToString("X2");
+                                     }
+
+                                     dataCell.TimeLogin = DateTime.Now;
+                                     dataCell.PATHCount=1;
+                                     dataCell.sendCount = 0;
+                                     dataCell.recvCount = 0;
+                                     dataCell.TimeSend = DateTime.Now.AddSeconds(-10);
+                                     dataCell.dataStatus = 0;
+                                     dataCell.dataStr = "";
+
+                                     idx = 6;   // cmd-id(1) + info
+                                     dataCell.VN = recvBuf[idx];
+                                     int n=0;
+                                     idx = 27;   //3 * 8+1, Use it replace the max size of Vn-table
+                                     for(; n<idx; n+=3)
+                                     {
+                                         if(VnTable[n] == dataCell.VN)
+                                         {
+                                             dataCell.VnAddr = VnTable[n+1];
+                                             dataCell.ValueSize = VnTable[n+2];
+                                             break;
+                                         }
+                                     }
+                                     if (idx == n)       //last data is error code
+                                     {
+                                         dataCell.VN = VnTable[n];
+                                         dataCell.VnAddr = VnTable[n+1];
+                                         dataCell.ValueSize = VnTable[n+2];
+                                         MessageBox.Show("设备类型", "ERR");
+                                     }
+
++                                    // add the downDataList info, contain count !!!
+                                     downDataList.Add(dataCell);
+                                     if (downDataList.Count >= DataGridViewMaxNum-1)
+                                     {
+                                         this.Invoke(new Action(() =>
+                                         {
+                                             for (int m = 0; m < DataGridViewMaxNum; m++)
+                                             {
+                                                 DataRow NewRow = InverterStatusDataTable.NewRow();
+                                                 NewRow[0] = Convert.ToString(m + 1 + DataGridViewMaxNum);
+                                                 InverterStatusDataTable.Rows.Add(NewRow);
+                                             }
+                                             DataGridViewMaxNum *= 2;
+                                         }));
+                                     }
+
+                                     InverterStatusDataTable.Rows[k][0] = k + 1;
+                                     InverterStatusDataTable.Rows[k][1] = dataCell.SN_HexStr;
+                                     InverterStatusDataTable.Rows[k][2] = dataCell.VN.ToString("X2");
+                                     InverterStatusDataTable.Rows[k][3] = dataCell.TimeLogin.ToString("yyyy-MM-dd HH:mm:ss");
+                                     InverterStatusDataTable.Rows[k][4] = "";
+                                     InverterStatusDataTable.Rows[k][5] = dataCell.recvCount + "/" + dataCell.sendCount;
+                                     InverterStatusDataTable.Rows[k][6] = dataCell.PATHCount;
+                                     InverterStatusDataTable.Rows[k][7] = "";
+                                     InverterStatusDataTable.Rows[k][8] = dataCell.PATHStr;
+                                 }
+                             }
+                             else if (recvBuf[idx] == 3)     //传感器数据
+                             {
+                                 Debug.Print("接收数据:" + Tools.byteToHexStr(uartRxBuffer, length));
+
+                                 int k = 0;
+                                 for (; k < downDataList.Count; k++)
+                                 {
+                                     if (downDataList[k].SN[4] == recvBuf[4] && downDataList[k].SN[3] == recvBuf[3] &&
+                                         downDataList[k].SN[2] == recvBuf[2] && downDataList[k].SN[1] == recvBuf[1] &&
+                                         downDataList[k].SN[0] == recvBuf[0])    // && downDataList[k].dataStatus == 1)
+                                     {
+                                         downDataList[k].recvCount++;
+                                         downDataList[k].TimeRead = DateTime.Now;
+                                         downDataList[k].dataStr = "";
+
+                                         //40 01 02 03 04(SN:5) 03(Cmd-id:1)  30 04 02 00 01 05 34
+                                         idx = length - 3;   // (1+2)
+                                         if(13 == length)       // normal : 6+7
+                                         {
+                                             if(0x00 == recvBuf[idx-1])
+                                             {
+                                                 if(0x00 == recvBuf[idx])
+                                                 {
+                                                     // normal

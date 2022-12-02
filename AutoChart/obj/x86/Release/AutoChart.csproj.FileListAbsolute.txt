@@ -1,0 +1,8 @@
+E:\VSObject\AutoChart\AutoChart\bin\Release\AutoChart.exe
+E:\VSObject\AutoChart\AutoChart\bin\Release\AutoChart.pdb
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.form1.resources
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.Properties.Resources.resources
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.csproj.GenerateResource.Cache
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.exe
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.pdb
+E:\VSObject\AutoChart\AutoChart\obj\x86\Release\AutoChart.csprojResolveAssemblyReference.cache

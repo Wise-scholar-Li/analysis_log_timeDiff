@@ -1,0 +1,17 @@
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.DataSet.dll
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.dll
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.pdb
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.xml
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.DataSet.pdb
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\ExcelDataReader.DataSet.xml
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\config_sn_tool.csproj.SuggestedBindingRedirects.cache
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\AutoChart.form1.resources
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\UartUpdata.Properties.Resources.resources
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\config_sn_tool.csproj.GenerateResource.cache
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\config_sn_tool.csproj.CoreCompileInputs.cache
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\config_sn_tool.csproj.CopyComplete
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\蓝牙工具-配置网关SN.exe.config
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\蓝牙工具-配置网关SN.exe
+D:\practise\GateWay_APP\config_sn\AutoChart\bin\Debug\蓝牙工具-配置网关SN.pdb
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\蓝牙工具-配置网关SN.exe
+D:\practise\GateWay_APP\config_sn\AutoChart\obj\x86\Debug\蓝牙工具-配置网关SN.pdb

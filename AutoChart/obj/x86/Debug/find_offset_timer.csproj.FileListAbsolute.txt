@@ -1,0 +1,17 @@
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\查找时间差—工具.exe.config
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\查找时间差—工具.exe
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\查找时间差—工具.pdb
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.DataSet.dll
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.dll
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.pdb
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.xml
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.DataSet.pdb
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\bin\Debug\ExcelDataReader.DataSet.xml
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\find_offset_timer.csproj.SuggestedBindingRedirects.cache
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\AutoChart.form1.resources
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\UartUpdata.Properties.Resources.resources
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\find_offset_timer.csproj.GenerateResource.cache
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\find_offset_timer.csproj.CoreCompileInputs.cache
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\find_offset_timer.csproj.CopyComplete
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\查找时间差—工具.exe
+D:\practise\GateWay_APP\find_offset_timer\AutoChart\obj\x86\Debug\查找时间差—工具.pdb
